@@ -49,7 +49,7 @@ fun MyApp() {
 }
 @Composable
 fun IamRich(modifier:Modifier=Modifier) {
-    var isVisible by remember { mutableStateOf(false) }
+    var clicked by remember { mutableStateOf(false) }
     val context= LocalContext.current
     Column(
         //modifier = Modifier.fillMaxSize(),
@@ -58,24 +58,22 @@ fun IamRich(modifier:Modifier=Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = if (isVisible) "I am Poor" else "I am Rich",
+            text = if (clicked) "I am Poor" else "I am Rich",
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
             modifier = modifier
         )
 
-        if (isVisible) {
+            Button(onClick = {clicked = true}){
+                Text(text = "Click Me!")
+            }
+
+        if (clicked) {
             Image(
                 painter = painterResource(id = R.drawable.diamond_image),
                 contentDescription = "diamond image",
                 modifier = Modifier.size(200.dp)
             )
-        }
-        if(isVisible) {
-            Button(onClick = { isVisible = false }) {
-                // only shows button when it hasn't been clicked
-                Text(text = "Click Me")
-            }
         }
     }
 }
