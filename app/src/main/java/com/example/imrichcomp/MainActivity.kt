@@ -71,8 +71,11 @@ fun IamRich(modifier:Modifier=Modifier) {
                 modifier = Modifier.size(200.dp)
             )
         }
-        Button(onClick = {isVisible=true}) {
-            Text(text = "Click me")
+        if(isVisible) {
+            Button(onClick = { isVisible = false }) {
+                // only shows button when it hasn't been clicked
+                Text(text = "Click Me")
+            }
         }
     }
 }
